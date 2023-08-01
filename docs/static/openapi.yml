@@ -46724,6 +46724,11 @@ definitions:
         type: string
       state:
         type: string
+  auction.auction.MsgCreateAuctionResponse:
+    type: object
+    properties:
+      auctionIndex:
+        type: string
   auction.auction.Params:
     type: object
     description: Params defines the parameters for the module.
