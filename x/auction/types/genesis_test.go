@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"auction/x/auction/types"
+
 	"github.com/stretchr/testify/require"
 )
 
@@ -22,7 +23,7 @@ func TestGenesisState_Validate(t *testing.T) {
 			desc: "valid genesis state",
 			genState: &types.GenesisState{
 
-				SystemInfo: &types.SystemInfo{
+				SystemInfo: types.SystemInfo{
 					AuctionId: 68,
 				},
 				AuctionList: []types.Auction{
@@ -63,4 +64,13 @@ func TestGenesisState_Validate(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestDefaultGenesisState_ExpectedInitialNextId(t *testing.T) {
+	require.EqualValues(t,
+		&types.GenesisState{
+			AuctionList: []types.Auction{},
+			SystemInfo:  types.SystemInfo{uint64(1)},
+		},
+		types.DefaultGenesis())
 }

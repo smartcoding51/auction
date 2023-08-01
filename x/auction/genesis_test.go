@@ -7,6 +7,7 @@ import (
 	"auction/testutil/nullify"
 	"auction/x/auction"
 	"auction/x/auction/types"
+
 	"github.com/stretchr/testify/require"
 )
 
@@ -14,7 +15,7 @@ func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 
-		SystemInfo: &types.SystemInfo{
+		SystemInfo: types.SystemInfo{
 			AuctionId: 78,
 		},
 		AuctionList: []types.Auction{
