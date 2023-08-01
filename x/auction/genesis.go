@@ -12,6 +12,10 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	if genState.SystemInfo != nil {
 		k.SetSystemInfo(ctx, *genState.SystemInfo)
 	}
+	// Set all the auction
+	for _, elem := range genState.AuctionList {
+		k.SetAuction(ctx, elem)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	k.SetParams(ctx, genState.Params)
 }
@@ -26,6 +30,7 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	if found {
 		genesis.SystemInfo = &systemInfo
 	}
+	genesis.AuctionList = k.GetAllAuction(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

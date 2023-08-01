@@ -1,0 +1,17 @@
+syntax = "proto3";
+package auction.auction;
+
+option go_package = "auction/x/auction/types";
+
+message Auction {
+  string index = 1; 
+  string name = 2; 
+  string endAt = 3; 
+  uint64 minBid = 4; 
+  uint64 highestBid = 5; 
+  string highestBidder = 6; 
+  string seller = 7; 
+  string state = 8; 
+  
+}
+

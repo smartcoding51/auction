@@ -25,9 +25,31 @@ func TestGenesisState_Validate(t *testing.T) {
 				SystemInfo: &types.SystemInfo{
 					AuctionId: 68,
 				},
+				AuctionList: []types.Auction{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated auction",
+			genState: &types.GenesisState{
+				AuctionList: []types.Auction{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
 		},
 		// this line is used by starport scaffolding # types/genesis/testcase
 	}

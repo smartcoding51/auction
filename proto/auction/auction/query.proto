@@ -7,6 +7,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "auction/auction/params.proto";
 import "auction/auction/system_info.proto";
+import "auction/auction/auction.proto";
 
 option go_package = "auction/x/auction/types";
 
@@ -24,6 +25,16 @@ service Query {
     option (google.api.http).get = "/auction/auction/system_info";
   
   }
+  
+  // Queries a list of Auction items.
+  rpc Auction    (QueryGetAuctionRequest) returns (QueryGetAuctionResponse) {
+    option (google.api.http).get = "/auction/auction/auction/{index}";
+  
+  }
+  rpc AuctionAll (QueryAllAuctionRequest) returns (QueryAllAuctionResponse) {
+    option (google.api.http).get = "/auction/auction/auction";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -39,5 +50,22 @@ message QueryGetSystemInfoRequest {}
 
 message QueryGetSystemInfoResponse {
   SystemInfo SystemInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAuctionRequest {
+  string index = 1;
+}
+
+message QueryGetAuctionResponse {
+  Auction auction = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllAuctionRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllAuctionResponse {
+  repeated Auction                                auction    = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

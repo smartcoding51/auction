@@ -5,12 +5,14 @@ package auction.auction;
 import "gogoproto/gogo.proto";
 import "auction/auction/params.proto";
 import "auction/auction/system_info.proto";
+import "auction/auction/auction.proto";
 
 option go_package = "auction/x/auction/types";
 
 // GenesisState defines the auction module's genesis state.
 message GenesisState {
-  Params     params     = 1 [(gogoproto.nullable) = false];
-  SystemInfo systemInfo = 2;
+           Params     params      = 1 [(gogoproto.nullable) = false];
+           SystemInfo systemInfo  = 2;
+  repeated Auction    auctionList = 3 [(gogoproto.nullable) = false];
 }
 
