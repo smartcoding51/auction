@@ -1,0 +1,9 @@
+syntax = "proto3";
+package auction.auction;
+
+option go_package = "auction/x/auction/types";
+
+message SystemInfo {
+  uint64 auctionId = 1; 
+  
+}
